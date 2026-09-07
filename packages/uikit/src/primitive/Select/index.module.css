@@ -3,7 +3,7 @@
   font-family: var(--ds-font-family-sans);
   font-size: var(--ds-font-size-200);
   color: var(--ds-color-text);
-  background: var(--ds-elevation-surface);
+  background: var(--ds-canvas);
   border: 1px solid var(--ds-color-border);
   border-radius: var(--ds-space-075);
   padding: 0 var(--ds-space-150);

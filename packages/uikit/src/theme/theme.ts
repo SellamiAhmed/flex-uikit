@@ -165,7 +165,7 @@ function getInputStyles(theme: MantineTheme, props: Pick<InputProps, 'size' | 'v
           width: '100%',
           color: token('color.text'),
           border: 'none',
-          backgroundColor: 'transparent',
+          backgroundColor: 'var(--ds-canvas);',
           ...withInputSize,
           '&::placeholder': {
             color: 'var(--ds-color-text-subtlest) !important'
@@ -175,7 +175,7 @@ function getInputStyles(theme: MantineTheme, props: Pick<InputProps, 'size' | 'v
           width: '100%',
           color: token('color.text'),
           border: '1px solid var(--ds-color-border)',
-          backgroundColor: 'var(--ds-elevation-surface)',
+          backgroundColor: 'transparent',
           borderRadius: 'var(--ds-space-075)',
           ...withInputSize,
           '&:hover:not(:disabled):not([data-disabled])': {
@@ -211,7 +211,7 @@ function getInputStyles(theme: MantineTheme, props: Pick<InputProps, 'size' | 'v
           ...inputSize, // ← define --input-height/--input-fz on wrapper itself
           border: '1px solid var(--ds-color-border)',
           borderRadius: 'var(--ds-space-075)',
-          backgroundColor: 'var(--ds-elevation-surface)',
+          backgroundColor: 'var(--ds-canvas);',
           overflow: 'hidden',
           '&:hover': {
             borderColor: 'var(--ds-color-border-bold)'
@@ -991,8 +991,8 @@ export function createAppTheme(colorScheme: 'light' | 'dark', fontConfig?: FontC
       Drawer: {
         defaultProps: () => ({
           overlayProps: {
-            backgroundOpacity: 0.85,
-            blur: 3,
+            backgroundOpacity: 0.5,
+            blur: 0.5,
             color: '#000000'
           }
         }),
@@ -1022,8 +1022,8 @@ export function createAppTheme(colorScheme: 'light' | 'dark', fontConfig?: FontC
             transition: 'fade-down'
           },
           overlayProps: {
-            backgroundOpacity: 0.45,
-            blur: 4,
+            backgroundOpacity: 0.5,
+            blur: 0.5,
             color: token('color.blanket')
           }
         }),
@@ -1031,7 +1031,8 @@ export function createAppTheme(colorScheme: 'light' | 'dark', fontConfig?: FontC
           content: {
             border: `1px solid ${token('color.border')} !important`,
             backgroundColor: token('elevation.surface.overlay'),
-            borderRadius: '12px'
+            borderRadius: '12px',
+            willChange: 'transform, opacity'
           },
           header: {
             borderTopLeftRadius: '12px',
