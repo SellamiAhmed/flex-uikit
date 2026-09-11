@@ -1,5 +1,11 @@
 # @flxui/uikit
 
+## 1.0.4
+
+### Patch Changes
+
+- [`b3b7d7e`](https://github.com/SellamiAhmed/flxuikit/commit/b3b7d7ebdf06424e4e11bfa45701792a9ea1e9fa) Thanks [@SellamiAhmed](https://github.com/SellamiAhmed)! - - some fixes theme
+
 ## 1.0.3
 
 ### Patch Changes
