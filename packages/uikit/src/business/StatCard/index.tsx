@@ -1,14 +1,15 @@
-import { IconArrowDownRight, IconArrowUpRight } from '@tabler/icons-react'
+// StatCard.tsx
+import { IconArrowDownRight, IconArrowUpRight, IconHelpCircle } from '@tabler/icons-react'
 import clsx from 'clsx'
 
-import { Card, CardProps, Group, Stack, Typography, TypographyProps } from '../../primitive/index.js'
+import { Card, CardProps, Group, Stack, Tooltip, Typography, TypographyProps } from '../../primitive/index.js'
 
 import classes from './index.module.css'
 
 type IconTone = 'brand' | 'neutral' | 'warning' | 'success' | 'danger'
 
 const iconToneClass: Record<IconTone, string | undefined> = {
-  brand: undefined, // .icon's default background already covers this
+  brand: undefined,
   neutral: classes.iconNeutral,
   warning: classes.iconWarning,
   success: classes.iconSuccess,
@@ -19,11 +20,11 @@ export interface StatCardProps extends CardProps {
   title: string
   value: string | number
   icon?: React.ReactNode
-  /** Visual tone of the icon badge background/color. Defaults to 'brand' (existing behavior, unchanged). */
   iconTone?: IconTone
   titleProps?: TypographyProps
   valueProps?: TypographyProps
-  /** Marks the card as clickable: adds hover/active/focus states and a pointer cursor. */
+  /** Optional help text shown via a small "?" icon next to the title, EduVault-style. */
+  titleTooltip?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLDivElement>
 }
 
@@ -34,6 +35,7 @@ export const StatCard = ({
   iconTone = 'brand',
   titleProps,
   valueProps,
+  titleTooltip,
   children,
   className,
   onClick,
@@ -47,10 +49,19 @@ export const StatCard = ({
       role={onClick ? 'button' : undefined}
       className={clsx(classes.card, onClick && classes.interactive, className)}
     >
-      <Group justify="space-between" align="flex-start" className={classes.header}>
-        <Typography variant="label-lg" className={classes.title} {...titleProps}>
-          {title}
-        </Typography>
+      <Group justify="flex-start" align="center" gap={8} wrap="nowrap" className={classes.header}>
+        <Group gap={4} align="center" wrap="nowrap">
+          <Typography variant="label-lg" className={classes.title} {...titleProps}>
+            {title}
+          </Typography>
+          {titleTooltip && (
+            <Tooltip label={titleTooltip}>
+              <span className={classes.helpIcon} aria-hidden="true">
+                <IconHelpCircle size={14} />
+              </span>
+            </Tooltip>
+          )}
+        </Group>
         {icon && (
           <span className={clsx(classes.icon, iconToneClass[iconTone])} aria-hidden="true">
             {icon}
@@ -58,11 +69,13 @@ export const StatCard = ({
         )}
       </Group>
 
-      <Stack gap={4} className={classes.body}>
-        <Typography variant="headline-lg" className={classes.value} {...valueProps}>
-          {value}
-        </Typography>
-        {children}
+      <Stack gap={2} className={classes.body}>
+        <Group gap={6} align="baseline" wrap="nowrap" className={classes.valueRow}>
+          <Typography variant="headline-lg" className={classes.value} {...valueProps}>
+            {value}
+          </Typography>
+          {children}
+        </Group>
       </Stack>
     </Card>
   )
@@ -80,19 +93,11 @@ const Trend = ({ value, direction, description, invertColor }: StatCardTrendProp
   const Icon = direction === 'up' ? IconArrowUpRight : IconArrowDownRight
 
   return (
-    <Group gap={4} className={classes.trend} wrap="nowrap">
-      <span
-        className={clsx(classes.trendIcon, isPositive ? classes.trendPositive : classes.trendNegative)}
-        aria-hidden="true"
-      >
-        <Icon size={14} />
-      </span>
-      <Typography
-        variant="label-md"
-        className={clsx(classes.trendValue, isPositive ? classes.trendPositive : classes.trendNegative)}
-      >
+    <Group gap={6} wrap="nowrap" align="center">
+      <span className={clsx(classes.trendPill, isPositive ? classes.trendPillPositive : classes.trendPillNegative)}>
+        <Icon size={12} className={classes.trendIcon} />
         {value}%
-      </Typography>
+      </span>
       {description && (
         <Typography variant="label-md" c="dimmed" className={classes.trendDescription}>
           {description}

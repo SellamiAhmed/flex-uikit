@@ -1,8 +1,11 @@
+/* index.module.css */
+
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-space-100, 8px); /* was 150/12px — tightens header-to-value gap */
-  padding: var(--ds-space-150, 12px); /* explicit tighter padding for stat cards */
+  width: 100%; /* ← add this: prevents shrink-to-fit when content is short */
+  gap: 6px;
+  padding: 10px 12px;
   transition:
     border-color 150ms ease,
     background-color 150ms ease,
@@ -33,6 +36,13 @@
 .title {
   color: var(--ds-color-text-subtle);
   font-weight: 600;
+}
+
+.helpIcon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ds-color-text-subtle);
+  cursor: help;
 }
 
 .icon {
@@ -66,35 +76,45 @@
 
 .body {
   align-items: flex-start;
-  gap: 2px; /* was the Stack's gap={4} in JSX — tightening title→value further */
+  gap: 0; /* was the Stack's gap={4} in JSX — tightening title→value further */
 }
 
 .value {
   font-variant-numeric: tabular-nums;
   color: var(--ds-color-text);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
-.trend {
-  margin-top: 0; /* was 2px — .body gap already provides spacing now */
+.valueRow {
+  flex-wrap: wrap;
+  gap: 6px; /* lets trend pill drop to its own line on narrow cards instead of clipping */
+}
+
+.trendPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.trendPillPositive {
+  background: var(--ds-color-background-accent-green-subtlest);
+  color: var(--ds-color-text-success);
+}
+
+.trendPillNegative {
+  background: var(--ds-color-background-accent-orange-subtlest);
+  color: var(--ds-color-text-danger);
 }
 
 .trendIcon {
-  display: inline-flex;
-  align-items: center;
-}
-
-.trendValue {
-  font-weight: 600;
-}
-
-.trendPositive {
-  color: var(--ds-color-text-success, #1a7f37);
-}
-
-.trendNegative {
-  color: var(--ds-color-text-danger, #cf222e);
+  flex-shrink: 0;
 }
 
 .trendDescription {

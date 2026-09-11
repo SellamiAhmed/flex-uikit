@@ -165,7 +165,7 @@ function getInputStyles(theme: MantineTheme, props: Pick<InputProps, 'size' | 'v
           width: '100%',
           color: token('color.text'),
           border: 'none',
-          backgroundColor: 'var(--ds-canvas);',
+          backgroundColor: 'var(--ds-canvas)',
           ...withInputSize,
           '&::placeholder': {
             color: 'var(--ds-color-text-subtlest) !important'
@@ -211,7 +211,7 @@ function getInputStyles(theme: MantineTheme, props: Pick<InputProps, 'size' | 'v
           ...inputSize, // ← define --input-height/--input-fz on wrapper itself
           border: '1px solid var(--ds-color-border)',
           borderRadius: 'var(--ds-space-075)',
-          backgroundColor: 'var(--ds-canvas);',
+          backgroundColor: 'var(--ds-canvas)',
           overflow: 'hidden',
           '&:hover': {
             borderColor: 'var(--ds-color-border-bold)'
@@ -700,22 +700,22 @@ export function createAppTheme(colorScheme: 'light' | 'dark', fontConfig?: FontC
 
       // ── Inputs ──
       Input: {
-        defaultProps: { size: 'md' },
+        defaultProps: { size: 'sm' },
         styles: getInputStyles
       },
       TextInput: {
         defaultProps: {
-          size: 'md',
+          size: 'sm',
           inputWrapperOrder: ['label', 'input', 'description', 'error']
         },
         styles: getInputStyles
       },
       NumberInput: {
-        defaultProps: { size: 'md' },
+        defaultProps: { size: 'sm' },
         styles: (theme: MantineTheme, props: NumberInputProps) => getInputStyles(theme, props, 'NumberInput')
       },
       PasswordInput: {
-        defaultProps: { size: 'md' },
+        defaultProps: { size: 'sm' },
         styles: (theme: MantineTheme, props: PasswordInputProps) => getInputStyles(theme, props, 'PasswordInput')
       },
       Textarea: {
