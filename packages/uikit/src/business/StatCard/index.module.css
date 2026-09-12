@@ -5,6 +5,8 @@
   flex-direction: column;
   width: 100%; /* ← add this: prevents shrink-to-fit when content is short */
   gap: 6px;
+  align-self: flex-start;
+  height: auto;
   padding: 10px 12px;
   transition:
     border-color 150ms ease,
@@ -28,6 +30,8 @@
 }
 
 .header {
+  display: flex; /* add */
+  align-items: center; /* add — was implicit before */
   width: 100%;
   flex-wrap: nowrap;
   gap: var(--ds-space-100, 8px);
@@ -87,30 +91,31 @@
 }
 
 .valueRow {
+  display: flex; /* add */
+  align-items: baseline; /* matches the JSX align="baseline" */
   flex-wrap: wrap;
-  gap: 6px; /* lets trend pill drop to its own line on narrow cards instead of clipping */
+  gap: 6px;
 }
-
 .trendPill {
   display: inline-flex;
   align-items: center;
   gap: 2px;
-  padding: 2px 8px;
+  padding: 2px 7px;
+  min-height: 22px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1;
   white-space: nowrap;
 }
-
 .trendPillPositive {
-  background: var(--ds-color-background-accent-green-subtlest);
-  color: var(--ds-color-text-success);
+  background: var(--ds-color-background-accent-green-subtlest, #eaf8ef);
+  color: var(--ds-color-text-success, #16803c);
 }
 
 .trendPillNegative {
-  background: var(--ds-color-background-accent-orange-subtlest);
-  color: var(--ds-color-text-danger);
+  background: var(--ds-color-background-accent-orange-subtlest, #fff4e5);
+  color: var(--ds-color-text-danger, #c2410c);
 }
 
 .trendIcon {
