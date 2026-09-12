@@ -1,5 +1,13 @@
 # @flxui/uikit
 
+## 1.0.6
+
+### Patch Changes
+
+- [`5c3867c`](https://github.com/SellamiAhmed/flxuikit/commit/5c3867cdfd8c82781331a0acb92bf3219fd3d8c4) Thanks [@SellamiAhmed](https://github.com/SellamiAhmed)! - - bump version
+  - Merge branch 'v0' of https://github.com/SellamiAhmed/flxuikit into v0
+  - chore (): improve ui fro StatsCard
+
 ## 1.0.5
 
 ### Patch Changes
